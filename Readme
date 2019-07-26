@@ -1,15 +1,7 @@
-Deaconu Andreea-Carina, 324CC
+A HTTP client communicating with a REST API. Other concepts involved: sockets, DNS, IP, JSON, JWT, cookies.
+I coded in C and used functions from its libraries.
+For parsing JSON, I used Parson library: https://github.com/kgabis/parson
+There were 5 tasks; each one was revealed in the response body from the previous task.
+The first one was to make a GET request on /task1/start.
+The responses contained cookies and a JWT token at some point.
 
-Tema 3 - PC
-
-	Pentru parsarea de JSON, am utilizat biblioteca Parson, pentru ca a fost recomandata in enuntul temei. Consultand exemplele de pe GitHub si definitiile functiilor din README, am folosit urmatoarele functii: json_parson_string pe Body-ul din raspunsul primit de la server, apoi json_object pe aceasta, pentru a crea un JSON_Object. Am extras valoarea unei anumite chei cu json_object_get_string, iar, daca valoarea unei anumite chei este tot un obiect JSON, formez din el un alt JSON_Object si iterez prin perechile sale de tip nume-valoare cu un contor de la 0 la rezultatul lui json_object_get_count - 1.
-
-	Am folosit scheletul laboratorului 10 (de HTTP) pentru functiile din requests.c si helpers.c si functia get_ip din laboratorul 9 (de DNS).
-
-Structura programului
-	Am facut cate o functie ce rezolva fiecare task in parte, primind ca parametri:
-1. raspunsul de la task-ul anterior (exceptie facand functia pentru primul task)2. un alt string care memoreaza, temporar, raspunsul task-ului curent; il transmit mai departe pentru a memora raspunsul urmatorului task, pana cand ajung la ultimul task si pastreaza raspunsul primit la acesta
-3. un token JWT primit anterior, daca este cazul
-	In general, intr-o astfel de functie, construiesc mesajul care va fi trimis (in functie de method - GET sau POST), cu informatiile parsate din raspunsul task-ului anterior, deschid o conexiune, trimit mesajul si retin raspunsul primit.
-
-	La final, afisez raspunsul primit la ultimul task.
